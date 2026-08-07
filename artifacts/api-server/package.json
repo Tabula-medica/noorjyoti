@@ -11,7 +11,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@clerk/express": "^1",
+    "@clerk/express": "^2",
     "@clerk/shared": "^3",
     "@google-cloud/storage": "^7.19.0",
     "@workspace/api-zod": "workspace:*",
