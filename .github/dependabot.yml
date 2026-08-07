@@ -1,0 +1,30 @@
+# Managed by gen-dependabot.sh — version updates, minor+patch grouped
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directories:
+      - "/"
+      - "/artifacts api-server "
+      - "/artifacts ekdharma "
+      - "/artifacts ekdharma-site "
+      - "/artifacts mobile "
+      - "/artifacts mockup-sandbox "
+      - "/artifacts web "
+      - "/lib api-client-react "
+      - "/lib api-spec "
+      - "/lib api-zod "
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types: ["minor", "patch"]
+  - package-ecosystem: "pip"
+    directories:
+      - "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types: ["minor", "patch"]
