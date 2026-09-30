@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Home, Compass, Library, HeartHandshake, User } from "lucide-react";
+import { Home, Compass, Library, HeartHandshake, Sparkles, User } from "lucide-react";
 
 export function Stars() {
   const [stars, setStars] = useState<any[]>([]);
@@ -49,6 +49,7 @@ export function BottomNav() {
     { href: "/explore", label: "Explore", icon: Compass },
     { href: "/library", label: "Library", icon: Library },
     { href: "/unity", label: "Unity", icon: HeartHandshake },
+    { href: "/jarvis", label: "Jarvis", icon: Sparkles },
     { href: "/profile", label: "Profile", icon: User },
   ];
 
@@ -67,7 +68,7 @@ export function BottomNav() {
               href={link.href}
               aria-label={link.label}
               aria-current={isActive ? "page" : undefined}
-              className={`flex flex-col items-center gap-1 p-2 min-w-[64px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-md motion-reduce:transition-none ${
+              className={`flex flex-col items-center gap-1 p-2 min-w-[52px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-md motion-reduce:transition-none ${
                 isActive
                   ? "text-secondary"
                   : "text-muted-foreground hover:text-foreground"

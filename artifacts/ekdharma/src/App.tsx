@@ -15,6 +15,7 @@ import Tradition from "@/pages/tradition";
 import Library from "@/pages/library";
 import Unity from "@/pages/unity";
 import Profile from "@/pages/profile";
+import Jarvis from "@/pages/jarvis";
 
 import Layout from "@/components/layout";
 import { RouteSeo } from "@/lib/route-seo";
@@ -70,6 +71,7 @@ function Router() {
       <Route path="/library" component={Library} />
       <Route path="/unity" component={Unity} />
       <Route path="/profile" component={Profile} />
+      <Route path="/jarvis" component={Jarvis} />
       <Route component={NotFound} />
     </Switch>
   );
