@@ -69,6 +69,13 @@ const ROUTES: { match: (path: string) => boolean; meta: RouteMeta }[] = [
     },
   },
   {
+    match: (p) => p === "/jarvis",
+    meta: {
+      title: `Jarvis — ${SITE}`,
+      description: "Jump to any scripture, tradition or screen on NoorJyoti with a quick typed command.",
+    },
+  },
+  {
     match: (p) => p === "/profile",
     meta: { title: `Profile — ${SITE}`, description: DEFAULT_DESCRIPTION, noindex: true },
   },
