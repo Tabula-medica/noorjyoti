@@ -1,0 +1,12 @@
+name = "noorjyoti"
+pages_build_output_dir = "artifacts/web/dist/public"
+account_id = "6f0f81ab6245bad1f761e47799179ffe"
+compatibility_date = "2025-10-01"
+
+# ── CF Pages deploy ──────────────────────────────────────────────────────────
+# Project: noorjyoti  →  noorjyoti.org (custom domain)
+# Build root: artifacts/web  |  Output: artifacts/web/dist/public
+# Deploy: push to main  OR  gh workflow run deploy-cf-pages.yml
+#
+# GitHub repo secrets:
+#   CLOUDFLARE_API_TOKEN  — CF API token with Pages:Edit permission
