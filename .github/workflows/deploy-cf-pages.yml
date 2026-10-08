@@ -1,0 +1,60 @@
+name: deploy-cf-pages
+
+# Builds the NoorJyoti React/Vite SPA (artifacts/web) and deploys to CF Pages.
+# Custom domain: noorjyoti.org
+#
+# SETUP (one-time):
+#   1. gh secret set CLOUDFLARE_API_TOKEN --repo Tabula-medica/noorjyoti
+#   2. CF dashboard: Pages → Create project → Connect Git → Tabula-medica/noorjyoti
+#      Build command: cd artifacts/web && npm install && npm run build
+#      Output dir: artifacts/web/dist/public
+#      ROOT dir: /  (repo root)
+#   3. Set custom domain noorjyoti.org in CF Pages project settings
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "artifacts/web/src/**"
+      - "artifacts/web/public/**"
+      - "artifacts/web/index.html"
+      - "artifacts/web/vite.config.ts"
+      - "artifacts/web/package*.json"
+      - ".github/workflows/deploy-cf-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-cf-pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: artifacts/web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with: { node-version: "20", cache: npm, cache-dependency-path: artifacts/web/package-lock.json }
+
+      - run: npm ci
+
+      - name: Build Vite SPA
+        run: npm run build
+        env:
+          NODE_ENV: production
+          BASE_PATH: /
+          PORT: "3000"
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: "6f0f81ab6245bad1f761e47799179ffe"
+          command: pages deploy artifacts/web/dist/public --project-name=noorjyoti
+          workingDirectory: "."
