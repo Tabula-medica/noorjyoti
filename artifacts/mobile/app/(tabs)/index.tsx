@@ -6,6 +6,7 @@ import { Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { Body, Caption, Heading, Screen, Title } from "@/components/Themed";
 import { TraditionList } from "@/components/TraditionList";
 import { UnityRotator } from "@/components/UnityRotator";
+import { jarvisStrings } from "@/constants/jarvis-strings";
 import { useColors } from "@/hooks/useColors";
 
 export default function HomeScreen() {
@@ -67,6 +68,44 @@ export default function HomeScreen() {
             >
               Curated verses across traditions for anxiety, grief, gratitude,
               and courage.
+            </Body>
+          </View>
+          <Feather
+            name="chevron-right"
+            size={20}
+            color={colors.mutedForeground}
+          />
+        </Pressable>
+
+        <Pressable
+          onPress={() => router.push("/jarvis")}
+          accessibilityRole="button"
+          accessibilityLabel={`${jarvisStrings.homeCardTitle} — ${jarvisStrings.homeCardBody}`}
+          style={({ pressed }) => [
+            styles.pathCard,
+            {
+              backgroundColor: colors.card,
+              borderColor: colors.border,
+              borderRadius: colors.radius,
+              opacity: pressed ? 0.85 : 1,
+            },
+          ]}
+        >
+          <View style={[styles.pathIcon, { backgroundColor: colors.accent }]}>
+            <Feather name="zap" size={22} color={colors.primary} />
+          </View>
+          <View style={{ flex: 1 }}>
+            <Heading style={{ fontSize: 18, marginBottom: 4 }}>
+              {jarvisStrings.homeCardTitle}
+            </Heading>
+            <Body
+              style={{
+                color: colors.mutedForeground,
+                fontSize: 13,
+                lineHeight: 19,
+              }}
+            >
+              {jarvisStrings.homeCardBody}
             </Body>
           </View>
           <Feather

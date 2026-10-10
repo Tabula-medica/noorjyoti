@@ -160,3 +160,8 @@ overrides:
   vitest: ~4.1.8
   # Medium: postcss-selector-parser quadratic complexity CPU DoS (>=6.1.3)
   postcss-selector-parser: '>=6.1.3'
+
+# metro 0.83 (Expo SDK 54) passes a file path to image-size, but the image-size
+# security override above forces >=2.0.3, which only accepts bytes.
+patchedDependencies:
+  metro@0.83.3: patches/metro@0.83.3.patch
