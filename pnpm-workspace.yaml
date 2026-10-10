@@ -58,7 +58,9 @@ overrides:
   path-to-regexp: '>=8.4.0'
   postcss: '>=8.5.9'
   ws: '>=8.21.0 <9'
-  vite: '>=7.3.5 <8'
+  # Floor vulnerable Vite releases only. Do not cap at <8: astro 7 /
+  # @astrojs/react 7 (ekdharma-site) require vite ^8.
+  'vite@<7.3.5': '>=7.3.5 <8'
   yaml: '>=2.9.0'
   shell-quote: '>=1.8.4 <2'
   form-data: '>=4.0.6 <5'
