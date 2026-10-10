@@ -60,6 +60,7 @@ function RootLayoutNav() {
       <Stack.Screen name="scripture/[id]" options={{ title: "" }} />
       <Stack.Screen name="paths/index" options={{ title: "Choose Your Path" }} />
       <Stack.Screen name="paths/[slug]" options={{ title: "" }} />
+      <Stack.Screen name="jarvis" options={{ title: "Jarvis" }} />
       <Stack.Screen
         name="listen/[chapterId]"
         options={{ title: "Listen", presentation: "card" }}
