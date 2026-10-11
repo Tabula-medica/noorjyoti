@@ -3,36 +3,44 @@ import { motion } from "framer-motion";
 import { 
   Play, Headphones, Globe, Heart, Sparkles, 
   BookOpen, Music, Share2, Mail, ArrowRight,
-  Star, Users, Clock, Download
+  Star, Users, Clock, Download,
+  type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 
 /* ── SEO Component ── */
-function SEOHead({ title, description, canonical, structuredData }) {
+type SEOHeadProps = {
+  title: string;
+  description: string;
+  canonical: string;
+  structuredData?: object;
+};
+
+function SEOHead({ title, description, canonical, structuredData }: SEOHeadProps) {
   useEffect(() => {
     document.title = title;
-    const metas = [
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: canonical },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: title },
-      { name: "twitter:description", content: description },
+    const metas: Array<[attr: "name" | "property", key: string, content: string]> = [
+      ["name", "description", description],
+      ["property", "og:title", title],
+      ["property", "og:description", description],
+      ["property", "og:type", "website"],
+      ["property", "og:url", canonical],
+      ["name", "twitter:card", "summary_large_image"],
+      ["name", "twitter:title", title],
+      ["name", "twitter:description", description],
     ];
-    metas.forEach(m => {
-      let el = document.querySelector(`meta[${m.name ? "name" : "property"}=\"${m.name || m.property}\"]`);
+    metas.forEach(([attr, key, content]) => {
+      let el = document.querySelector(`meta[${attr}=\"${key}\"]`);
       if (!el) {
         el = document.createElement("meta");
-        el.setAttribute(m.name ? "name" : "property", m.name || m.property);
+        el.setAttribute(attr, key);
         document.head.appendChild(el);
       }
-      el.setAttribute("content", m.content);
+      el.setAttribute("content", content);
     });
     if (structuredData) {
-      let ld = document.getElementById("noorjyoti-ld");
+      let ld = document.getElementById("noorjyoti-ld") as HTMLScriptElement | null;
       if (!ld) { ld = document.createElement("script"); ld.id = "noorjyoti-ld"; ld.type = "application/ld+json"; document.head.appendChild(ld); }
       ld.textContent = JSON.stringify(structuredData);
     }
@@ -41,7 +49,18 @@ function SEOHead({ title, description, canonical, structuredData }) {
 }
 
 /* ── Tradition Card ── */
-function TraditionCard({ name, nativeName, description, color, icon: Icon, scriptureCount, languageCount, delay }) {
+type TraditionCardProps = {
+  name: string;
+  nativeName: string;
+  description: string;
+  color: string;
+  icon: LucideIcon;
+  scriptureCount: number;
+  languageCount: number;
+  delay: number;
+};
+
+function TraditionCard({ name, nativeName, description, color, icon: Icon, scriptureCount, languageCount, delay }: TraditionCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -69,7 +88,14 @@ function TraditionCard({ name, nativeName, description, color, icon: Icon, scrip
 }
 
 /* ── Testimonial ── */
-function Testimonial({ quote, name, location, tradition }) {
+type TestimonialProps = {
+  quote: string;
+  name: string;
+  location: string;
+  tradition: string;
+};
+
+function Testimonial({ quote, name, location, tradition }: TestimonialProps) {
   return (
     <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-100">
       <div className="flex gap-1 mb-3">
@@ -90,7 +116,13 @@ function Testimonial({ quote, name, location, tradition }) {
 }
 
 /* ── Stats Counter ── */
-function StatCounter({ icon: Icon, value, label }) {
+type StatCounterProps = {
+  icon: LucideIcon;
+  value: string;
+  label: string;
+};
+
+function StatCounter({ icon: Icon, value, label }: StatCounterProps) {
   return (
     <div className="flex flex-col items-center text-center">
       <Icon className="w-6 h-6 text-amber-500 mb-2" />
