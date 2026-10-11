@@ -19,6 +19,26 @@ updates:
     groups:
       minor-and-patch:
         update-types: ["minor", "patch"]
+    # The mobile app is pinned to the native versions its Expo SDK supports
+    # (see `expo install --check`). Minor/major bumps of these broke the app
+    # in #52; upgrade them together with `npx expo install --fix` during an
+    # Expo SDK upgrade instead. Keep this block if gen-dependabot.sh
+    # regenerates this file.
+    ignore:
+      - dependency-name: "expo"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "expo-*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "@expo/*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "react-native"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "react-native-*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "@react-native-community/*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "@react-native-async-storage/*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
   - package-ecosystem: "pip"
     directories:
       - "/"
