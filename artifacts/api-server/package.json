@@ -23,7 +23,7 @@
     "express": "^5",
     "google-auth-library": "^10.6.2",
     "http-proxy-middleware": "^3",
-    "multer": "^2.4.0",
+    "multer": "^2.5.0",
     "pino": "^9",
     "pino-http": "^11"
   },
