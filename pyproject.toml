@@ -14,4 +14,5 @@ dependencies = [
 [tool.uv]
 # Security: force patched cryptography (GHSA-537c-gmf6-5ccf + newer CVEs via google-auth transitive).
 # 50.0.0+ required for latest patches (was capped at <49 but that left 2 HIGH CVEs open).
-constraint-dependencies = ["cryptography>=50.0.0"]
+constraint-dependencies = ["cryptography>=50.0.0", "certifi>=2026.10.19"]
+
